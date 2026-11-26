@@ -1,0 +1,39 @@
+[project]
+name = "rag-against-the-machine"
+version = "0.1.0"
+description = "Retrieval-Augmented Generation over the vLLM codebase"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.6",
+    "fire>=0.6",     # CLI required by the subject
+    "tqdm>=4.66",    # progress bars required by the subject
+    "numpy>=1.26",   # fast scoring for retrieval
+    # NOTE: the LLM deps for the `answer` command (e.g. torch, transformers)
+    # are intentionally NOT here yet. We add them when we reach answer
+    # generation, so `uv sync` stays light while we build indexing/retrieval.
+]
+
+[dependency-groups]
+# `uv sync` installs this group by default.
+dev = [
+    "flake8>=7.0",
+    "mypy>=1.9",
+    "pytest>=8.0",
+]
+
+[tool.uv]
+# Application, not a library: uv does not build/install it as a package.
+package = false
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true
+ignore_missing_imports = true   # fire / tqdm ship no type stubs
+disallow_untyped_defs = true
+check_untyped_defs = true
+exclude = ['(^|/)(\.venv|build|dist)(/|$)']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

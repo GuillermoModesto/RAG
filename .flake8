@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 99
+exclude = .venv,.git,__pycache__,build,dist,data
+# Default flake8 limit is 79; 99 gives some air. Lower it to 79 if your
+# corrector insists. No error codes are silenced: write clean PEP 8.
