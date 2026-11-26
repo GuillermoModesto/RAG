@@ -58,4 +58,7 @@ Thumbs.db
 *.swp
 *~
 
-# NOTE: data/datasets/ (the small question files) and uv.lock ARE committed.
+# Evaluation binary (external, never commit)
+moulinette/README.md
+moulinette/moulinette-fedora
+moulinette/moulinette-ubuntu
